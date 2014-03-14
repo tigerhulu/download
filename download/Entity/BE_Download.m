@@ -131,6 +131,10 @@
 -(void)onResourceRequestTask:(NetRequestTask *)requestTask Resource:(NSString *)resource
 {
     if (resource.length>0) {
+        if (_TotalSize==0) {
+            _TotalSize = [[[NSFileManager defaultManager] attributesOfItemAtPath:resource error:nil] fileSize];
+            _CurSize = _TotalSize;
+        }
         [self runThread:Download_Complete];
     }else{
         [self runThread:Download_Fail];
