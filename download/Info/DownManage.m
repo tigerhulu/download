@@ -7,6 +7,7 @@
 //
 
 #import "DownManage.h"
+#import "BE_Download.h"
 
 static DownManage * _DownManage;
 @implementation DownManage

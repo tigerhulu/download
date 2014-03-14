@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BE_Download.h"
+@class BE_Download;
 
 @interface DownloadCell : UITableViewCell
 

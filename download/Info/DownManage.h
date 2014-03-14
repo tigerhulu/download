@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BE_Download.h"
+
+@class BE_Download;
 
 #define MAXDOWNCOUNT 3
 
