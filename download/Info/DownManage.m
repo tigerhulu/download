@@ -15,7 +15,6 @@ static DownManage * _DownManage;
 {
     if (!_DownManage) {
 		@synchronized(self) {
-            
 			if (!_DownManage) {
                 _DownManage = [[DownManage alloc] init];
                 [_DownManage initData];
@@ -133,6 +132,7 @@ static DownManage * _DownManage;
     
     BE_Download * download = [[BE_Download alloc] init];
     download.Url = url;
+    download.FilePath = [Resource getResourcePathWithName:[url lastPathComponent]];
     download.DownloadType = DownLoad_Wait;
     [download save];
     [download release];
@@ -165,7 +165,7 @@ static DownManage * _DownManage;
         [download setDelegate:nil];
     }
     
-    NSString * filePath = [Resource getResourcePathWithName:url];
+    NSString * filePath = download.FilePath;
     NSFileManager * manager = [NSFileManager defaultManager];
     if (isDelete && filePath.length>0) {
         [manager removeItemAtPath:filePath error:nil];

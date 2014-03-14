@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BE_Download.h"
 
-@interface DownloadCell : UITableViewCell<DownloadDelegate>
+@interface DownloadCell : UITableViewCell
 
 @property (nonatomic,assign) UIButton * BtnRun;
 
@@ -21,6 +21,8 @@
 
 @property (nonatomic,assign) UILabel * Result;
 
--(void)DownloadDelegateStatueChange:(DownloadType)downloadType;
+-(void)setProgressCurSize:(long long)curSize TotalSize:(long long)totalSize Anim:(BOOL)anim;
+
+-(void)setCurStatue:(DownloadType)downloadType;
 
 @end

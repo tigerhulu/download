@@ -9,11 +9,9 @@
 #import "VCBase.h"
 #import "DownManage.h"
 
-@interface RootVC : VCBase<DownloadDataDelegate,UIActionSheetDelegate>{
+@interface RootVC : VCBase<DownloadDataDelegate,DownloadDelegate,UIActionSheetDelegate>{
     IBOutlet UITableView * m_table;
     NSMutableArray * m_arr_item;
-    
-    NSCache * m_dic_cach;
 }
 
 @end

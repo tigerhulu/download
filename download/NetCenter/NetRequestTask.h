@@ -47,6 +47,11 @@
 @property (nonatomic,retain) NSArray * File;
 
 /**
+    文件保存路径
+ */
+@property (nonatomic,retain) NSString * LocalPath;
+
+/**
     文件大小
  */
 @property (nonatomic,assign) long long TotalSize;

@@ -18,19 +18,14 @@ typedef NS_ENUM(NSInteger, DownloadType)
     Download_Fail = 4,
 };
 
-@protocol DownloadDelegate <NSObject>
-
--(void)DownloadDelegateSetProgressCurSize:(long long)curSize TotalSize:(long long)totalSize Anim:(BOOL)anim;
-
--(void)DownloadDelegateStatueChange:(DownloadType)downloadType;
-
-@end
-
+@protocol DownloadDelegate;
 @interface BE_Download : BE_Base<NetRequestProxy>{
     id<DownloadDelegate> m_delegate;
 }
 
 @property (nonatomic,copy) NSString * Url;
+
+@property (nonatomic,copy) NSString * FilePath;
 
 @property (nonatomic,assign) long long CurSize;
 
@@ -49,5 +44,13 @@ typedef NS_ENUM(NSInteger, DownloadType)
 -(void)setProgress:(float)progress;
 
 -(void)updateStatue;
+
+@end
+
+@protocol DownloadDelegate <NSObject>
+
+-(void)DownloadDelegate:(BE_Download *)download SetProgressAnim:(BOOL)anim;
+
+-(void)DownloadDelegate:(BE_Download *)download StatueChange:(DownloadType)downloadType;
 
 @end

@@ -43,7 +43,7 @@
     return self;
 }
 
--(void)DownloadDelegateSetProgressCurSize:(long long)curSize TotalSize:(long long)totalSize Anim:(BOOL)anim
+-(void)setProgressCurSize:(long long)curSize TotalSize:(long long)totalSize Anim:(BOOL)anim
 {
     float total = totalSize;
     if (total==0) {
@@ -66,7 +66,7 @@
     _Percent.text = [NSString stringWithFormat:@"%0.1f%@/%0.1f%@",cur,unit,total,unit];
 }
 
--(void)DownloadDelegateStatueChange:(DownloadType)downloadType
+-(void)setCurStatue:(DownloadType)downloadType
 {
     switch (downloadType) {
         case DownLoad_Wait:
@@ -82,7 +82,7 @@
             _Result.text = @"已暂停，点击继续下载";
             break;
         case Download_Complete:
-            [_Progress setProgress:1 animated:YES];
+            [_Progress setProgress:1 animated:NO];
             [_BtnRun setImage:nil forState:UIControlStateNormal];
             _Result.text = @"下载完成";
             break;

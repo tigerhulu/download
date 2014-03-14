@@ -30,6 +30,7 @@
     self.CallBack = nil;
     self.Param = nil;
     self.File = nil;
+    self.LocalPath = nil;
     self.ProgressBar = nil;
     self.Delegate = nil;
     [super dealloc];

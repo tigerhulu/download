@@ -74,7 +74,6 @@
             }
             [[NSFileManager defaultManager] removeItemAtPath:[Resource getResourcesPath] error:nil];
             [m_arr_item removeAllObjects];
-            [m_dic_cach removeAllObjects];
             [m_table reloadData];
         }
     }
@@ -94,11 +93,11 @@
     
     [m_table setTableFooterView:[[[UIView alloc] initWithFrame:CGRectZero] autorelease]];
     m_arr_item = [[NSMutableArray alloc] initWithArray:[DownManage shared].ArrItem];
-    m_dic_cach = [[NSCache alloc] init];
     
     [DownManage shared].Delegate = self;
 }
 
+#pragma mark - delegate
 -(void)DownloadDataAddDownload:(BE_Download *)download
 {
     if (!download) {
@@ -108,6 +107,38 @@
     [m_table reloadData];
 }
 
+-(void)DownloadDelegate:(BE_Download *)download SetProgressAnim:(BOOL)anim
+{
+    DownloadCell * cell = [self CellForUrl:download.Url];
+    if (cell) {
+        [cell setProgressCurSize:download.CurSize TotalSize:download.TotalSize Anim:anim];
+    }
+}
+
+-(void)DownloadDelegate:(BE_Download *)download StatueChange:(DownloadType)downloadType
+{
+    DownloadCell * cell = [self CellForUrl:download.Url];
+    if (cell) {
+        [cell setCurStatue:downloadType];
+    }
+}
+
+-(DownloadCell * )CellForUrl:(NSString *)url
+{
+    int count = [m_arr_item count];
+    for (int i=0; i<count; i++) {
+        BE_Download * down = [m_arr_item objectAtIndex:i];
+        if ([url isEqualToString:down.Url]) {
+            DownloadCell * cell = (DownloadCell *)[m_table cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+            if (cell) {
+                return cell;
+            }
+        }
+    }
+    return  nil;
+}
+
+#pragma mark -
 -(IBAction)onRunBtnClick:(UIButton *)sender
 {
     UIView * view = sender.superview;
@@ -145,7 +176,7 @@
         case 0:  //查看文件
             if ([url hasSuffix:@".jpg"] || [url hasSuffix:@".png"]) {
                 ImageVC * vc = [[ImageVC alloc] init];
-                vc.ImgPath = [Resource getResourcePathWithName:url];
+                vc.ImgPath = download.FilePath;
                 [self.navigationController pushViewController:vc animated:YES];
                 [vc release];
             }
@@ -153,7 +184,6 @@
         default: //删除任务
             [[DownManage shared] removeDownloadWithUrl:url DeleteFile:buttonIndex==1];
             
-            [m_dic_cach removeObjectForKey:url];
             [m_arr_item removeObjectAtIndex:index];
             [m_table deleteRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:index inSection:0]] withRowAnimation:UITableViewRowAnimationRight];
             break;
@@ -177,19 +207,19 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    BE_Download * download = [m_arr_item objectAtIndex:indexPath.row];
-    NSString * key = download.Url;
-    DownloadCell * cell = [m_dic_cach objectForKey:key];
-    if (!cell) {
-        cell = [[[DownloadCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
+    static NSString *CellIdentifier = @"Cell";
+    DownloadCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[[DownloadCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         [cell.BtnRun addTarget:self action:@selector(onRunBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-        [m_dic_cach setObject:cell forKey:key];
     }
     
-    cell.Title.text = download.Url;
-    [cell DownloadDelegateStatueChange:download.DownloadType];
+    BE_Download * download = [m_arr_item objectAtIndex:indexPath.row];
+    download.Delegate = self;
     
-    [download setDelegate:cell];
+    cell.Title.text = download.Url;
+    [cell setCurStatue:download.DownloadType];
+    [cell setProgressCurSize:download.CurSize TotalSize:download.TotalSize Anim:NO];
     
     return cell;
 }
@@ -198,7 +228,6 @@
 {
     [m_table release];
     [m_arr_item release];
-    [m_dic_cach release];
     [super dealloc];
 }
 

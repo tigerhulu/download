@@ -36,13 +36,20 @@
 	@param file 文件名
 	@returns 完整文件路径
  */
--(NSString *)dealDownloadPath:(NSString *)file
+-(NSString *)dealDownloadPath:(NetRequestTask * )task
 {
+    NSString * destinationPath = task.LocalPath;
+    if (destinationPath) {
+        [Resource createPath:destinationPath];
+        return destinationPath;
+    }
+    
+    NSString * file = task.Url;
     if (file.length>7 && [[[file substringToIndex:7] lowercaseString] compare:@"http://"]==NSOrderedSame) {
         file = [file substringFromIndex:7];
     }
     
-    NSString * destinationPath=[NSString stringWithFormat:@"%@%@",[Resource getResourcesPath],file];
+    destinationPath=[NSString stringWithFormat:@"%@%@",[Resource getResourcesPath],file];
     [Resource createPath:destinationPath];
     
     return destinationPath;
@@ -74,7 +81,7 @@
         return nil;
     }
     NSURL * url = [NSURL URLWithString:requestTask.Url];
-    NSString * destination = [self dealDownloadPath:requestTask.Url];
+    NSString * destination = [self dealDownloadPath:requestTask];
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
     [request setDownloadDestinationPath:destination];
     [request setDownloadProgressDelegate:requestTask.ProgressBar];
@@ -153,7 +160,7 @@
         return;
     }
     NSURL * url = [NSURL URLWithString:requestTask.Url];
-    NSString * destination = [self dealDownloadPath:requestTask.Url];
+    NSString * destination = [self dealDownloadPath:requestTask];
     NSString * tempPath = [destination stringByAppendingString:@".download"];
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
     [request setDownloadProgressDelegate:requestTask.ProgressBar];
