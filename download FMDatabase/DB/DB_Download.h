@@ -7,7 +7,7 @@
 //
 
 #import "DB_Base.h"
-@class BE_Download;
+#import "BE_Download.h"
 
 @interface DB_Download : DB_Base
 

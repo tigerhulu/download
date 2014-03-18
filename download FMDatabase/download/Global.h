@@ -12,7 +12,6 @@
 #import "Util_Head.h"
 #import "MessageCenter.h"
 #import "Resource.h"
-#import "VCManage.h"
 #import "NetRequestFactory.h"
 
 #endif

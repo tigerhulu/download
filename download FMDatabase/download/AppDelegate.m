@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "DownManage.h"
+#import "RootVC.h"
 
 @implementation AppDelegate
 
@@ -17,9 +18,13 @@
     
     m_backIdentifier = UIBackgroundTaskInvalid;
     
+    RootVC * rootVC = [[RootVC alloc] init];
+    UINavigationController * vc = [[[UINavigationController alloc] initWithRootViewController:rootVC] autorelease];
+    [rootVC release];
+    
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     self.window.backgroundColor = [UIColor whiteColor];
-    self.window.rootViewController = [VCManage shared];
+    self.window.rootViewController = vc;
     [self.window makeKeyAndVisible];
     return YES;
 }

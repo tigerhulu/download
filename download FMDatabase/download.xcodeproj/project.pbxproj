@@ -74,7 +74,6 @@
 		A04E763A18CD8A93002B8759 /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = A04E762218CD8A93002B8759 /* whiteArrow.png */; };
 		A04E763B18CD8A93002B8759 /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A04E762318CD8A93002B8759 /* whiteArrow@2x.png */; };
 		A04E763F18CD8B9D002B8759 /* VCBase.m in Sources */ = {isa = PBXBuildFile; fileRef = A04E763E18CD8B9D002B8759 /* VCBase.m */; };
-		A04E764218CD8BE5002B8759 /* VCManage.m in Sources */ = {isa = PBXBuildFile; fileRef = A04E764118CD8BE5002B8759 /* VCManage.m */; };
 		A04E764618CD8C0E002B8759 /* RootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A04E764418CD8C0E002B8759 /* RootVC.m */; };
 		A04E764718CD8C0E002B8759 /* RootVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A04E764518CD8C0E002B8759 /* RootVC.xib */; };
 		A04E764A18CD8EC4002B8759 /* DownManage.m in Sources */ = {isa = PBXBuildFile; fileRef = A04E764918CD8EC4002B8759 /* DownManage.m */; };
@@ -200,8 +199,6 @@
 		A04E763C18CD8AD5002B8759 /* Global.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Global.h; sourceTree = "<group>"; };
 		A04E763D18CD8B9D002B8759 /* VCBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VCBase.h; path = ../UI/VCBase.h; sourceTree = "<group>"; };
 		A04E763E18CD8B9D002B8759 /* VCBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VCBase.m; path = ../UI/VCBase.m; sourceTree = "<group>"; };
-		A04E764018CD8BE5002B8759 /* VCManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCManage.h; sourceTree = "<group>"; };
-		A04E764118CD8BE5002B8759 /* VCManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCManage.m; sourceTree = "<group>"; };
 		A04E764318CD8C0E002B8759 /* RootVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootVC.h; sourceTree = "<group>"; };
 		A04E764418CD8C0E002B8759 /* RootVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootVC.m; sourceTree = "<group>"; };
 		A04E764518CD8C0E002B8759 /* RootVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RootVC.xib; sourceTree = "<group>"; };
@@ -331,8 +328,6 @@
 				A04E758818CD8913002B8759 /* UI */,
 				A04E763D18CD8B9D002B8759 /* VCBase.h */,
 				A04E763E18CD8B9D002B8759 /* VCBase.m */,
-				A04E764018CD8BE5002B8759 /* VCManage.h */,
-				A04E764118CD8BE5002B8759 /* VCManage.m */,
 				A04E755018CD51F2002B8759 /* AppDelegate.h */,
 				A04E755118CD51F2002B8759 /* AppDelegate.m */,
 				A04E763C18CD8AD5002B8759 /* Global.h */,
@@ -622,7 +617,6 @@
 				A04E75D418CD8958002B8759 /* ASIFormDataRequest.m in Sources */,
 				A043594118CEBE0900EA1A47 /* DownloadCell.m in Sources */,
 				A04E762E18CD8A93002B8759 /* ChineseToPinyin.m in Sources */,
-				A04E764218CD8BE5002B8759 /* VCManage.m in Sources */,
 				A0EB61DB18D0462100323E73 /* ImageVC.m in Sources */,
 				A027152C18D6DC6D00914F21 /* DB_Base.m in Sources */,
 				A04E762418CD8A93002B8759 /* Util_Button.m in Sources */,

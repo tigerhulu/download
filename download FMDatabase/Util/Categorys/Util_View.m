@@ -136,7 +136,7 @@
 static NSMutableArray   *displayViewAry;//已显示的页面数组
 
 + (UIView *)getTopView{
-    return [VCManage shared].view;
+    return nil;
 }
 
 + (void)setTopMaskViewCanTouch:(BOOL)_canTouch{
@@ -193,9 +193,9 @@ static NSMutableArray   *displayViewAry;//已显示的页面数组
 }
 
 + (void)showView:(UIView*)_view{
-    CGRect rect = [VCManage shared].view.frame;
-    rect.origin.y = 0;
-    [self showView:_view animateType:AnimateTypeOfPopping finalRect:rect completion:nil];
+//    CGRect rect = [VCManage shared].view.frame;
+//    rect.origin.y = 0;
+//    [self showView:_view animateType:AnimateTypeOfPopping finalRect:rect completion:nil];
 }
 
 + (void)showView:(UIView*)_view animateType:(AnimateType)_aType finalRect:(CGRect)_fRect{

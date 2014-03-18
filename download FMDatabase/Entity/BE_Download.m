@@ -8,6 +8,7 @@
 
 #import "BE_Download.h"
 #import "DB_Download.h"
+#import "DownManage.h"
 
 @implementation BE_Download
 
