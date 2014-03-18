@@ -328,4 +328,12 @@ static NetRequestFactory * _NetRequestFactory;
     return self;
 }
 
+-(void)dealloc
+{
+    [m_newtworkQueue cancelAllOperations];
+    [m_newtworkQueue release];
+    [m_lock release];
+    [super dealloc];
+}
+
 @end
