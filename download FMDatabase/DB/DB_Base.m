@@ -42,6 +42,7 @@ static DB_Base * _DB_Base;
     [self.DBQueue inDatabase:^(FMDatabase *db) {
          result = [db executeUpdate:sql];
     }];
+    [self.DBQueue close];
     return result;
 }
 
