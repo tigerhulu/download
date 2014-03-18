@@ -14,8 +14,8 @@
 
 -(void)setDelegate:(id<DownloadDelegate>)Delegate
 {
-    if (Delegate) {
-        m_delegate = Delegate;
+    m_delegate = Delegate;
+    if (m_delegate) {
         if (_TotalSize==0) {
             if ([m_delegate respondsToSelector:@selector(DownloadDelegate:SetProgressAnim:)]) {
                 [m_delegate DownloadDelegate:self SetProgressAnim:NO];
