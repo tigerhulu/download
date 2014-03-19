@@ -9,11 +9,11 @@
 #import "DB_Base.h"
 #import "DB_Download.h"
 
-static DB_Base * _DB_Base;
 @implementation DB_Base
 
 +(DB_Base *)shared
 {
+    static DB_Base * _DB_Base = nil;
     if (!_DB_Base) {
 		@synchronized(self) {
 			if (!_DB_Base) {

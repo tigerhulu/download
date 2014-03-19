@@ -10,20 +10,17 @@
 #import "ET_Download.h"
 #import "DB_Download.h"
 
-static DownManage * _DownManage;
 @implementation DownManage
 
 +(DownManage *)shared
 {
-    if (!_DownManage) {
-		@synchronized(self) {
-			if (!_DownManage) {
-                _DownManage = [[DownManage alloc] init];
-                [_DownManage initData];
-			}
-		}
-	}
-    return _DownManage;
+    static DownManage * _sharedInstance = nil;
+    static dispatch_once_t oncePredicate;
+    dispatch_once(&oncePredicate, ^{
+        _sharedInstance = [[self alloc] init];
+        [_sharedInstance initData];
+    });
+    return _sharedInstance;
 }
 
 -(void)initData
