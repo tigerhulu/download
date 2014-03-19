@@ -20,7 +20,7 @@
     }
 }
 
-+(void)addDownload:(BE_Download *)download
++(void)addDownload:(ET_Download *)download
 {
     NSString * sql = [NSString stringWithFormat:@"INSERT INTO %@ (Url, FilePath, CurSize, TotalSize, DownloadType) VALUES ('%@', '%@', %lld, %lld, %d)",Table_Download,download.Url,download.FilePath,download.CurSize,download.TotalSize,download.DownloadType];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -39,7 +39,7 @@
     });
 }
 
-+(void)updateDownload:(BE_Download *)download
++(void)updateDownload:(ET_Download *)download
 {
     if (download.Url.length<1) {
         return;
@@ -66,7 +66,7 @@
     FMResultSet * rs = [[DB_Base shared] executeQuery:sql];
     NSMutableArray * array = [NSMutableArray arrayWithCapacity:[rs columnCount]];
     while ([rs next]) {
-        BE_Download * download = [[BE_Download alloc] init];
+        ET_Download * download = [[ET_Download alloc] init];
         download.Url = [rs stringForColumn:@"Url"];
         download.FilePath = [rs stringForColumn:@"FilePath"];
         download.CurSize = [rs longLongIntForColumn:@"CurSize"];

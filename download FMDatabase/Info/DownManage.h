@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@class BE_Download;
+@class ET_Download;
 
 #define MAXDOWNCOUNT 3
 
 @protocol DownloadDataDelegate <NSObject>
 
--(void)DownloadDataAddDownload:(BE_Download *)download;
+-(void)DownloadDataAddDownload:(ET_Download *)download;
 
 @end
 
@@ -35,7 +35,7 @@
 
 -(void)updateData;
 
--(void)dealChange:(BE_Download *)download;
+-(void)dealChange:(ET_Download *)download;
 
 -(void)addDonwloadWithUrl:(NSString *)url;
 

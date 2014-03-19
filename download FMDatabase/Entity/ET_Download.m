@@ -1,34 +1,44 @@
 //
-//  BE_Download.m
+//  ET_Download.m
 //  download
 //
-//  Created by Haijiao on 14-3-10.
+//  Created by Haijiao on 14-3-19.
 //  Copyright (c) 2014年 Haijiao. All rights reserved.
 //
 
-#import "BE_Download.h"
+#import "ET_Download.h"
 #import "DB_Download.h"
 #import "DownManage.h"
 
-@implementation BE_Download
+@implementation ET_Download
 
 -(void)setDelegate:(id<DownloadDelegate>)Delegate
 {
-    m_delegate = Delegate;
-    if (m_delegate) {
+    _Delegate = Delegate;
+    if (_Delegate) {
         if (_TotalSize==0) {
-            if ([m_delegate respondsToSelector:@selector(DownloadDelegate:SetProgressAnim:)]) {
-                [m_delegate DownloadDelegate:self SetProgressAnim:NO];
+            if ([_Delegate respondsToSelector:@selector(DownloadDelegate:SetProgressAnim:)]) {
+                [_Delegate DownloadDelegate:self SetProgressAnim:NO];
             }
             return;
         }
-        if ([m_delegate respondsToSelector:@selector(DownloadDelegate:SetProgressAnim:)]) {
-            [m_delegate DownloadDelegate:self SetProgressAnim:NO];
+        if ([_Delegate respondsToSelector:@selector(DownloadDelegate:SetProgressAnim:)]) {
+            [_Delegate DownloadDelegate:self SetProgressAnim:NO];
         }
-        if (_IsFinish && [m_delegate respondsToSelector:@selector(DownloadDelegate:StatueChange:)]) {
-            [m_delegate DownloadDelegate:self StatueChange:Download_Complete];
+        if (_IsFinish && [_Delegate respondsToSelector:@selector(DownloadDelegate:StatueChange:)]) {
+            [_Delegate DownloadDelegate:self StatueChange:Download_Complete];
         }
     }
+}
+
+-(void)start
+{
+    [self runThread:Download_Run];
+}
+
+-(void)stop
+{
+    [self runThread:Download_Stop];
 }
 
 -(void)runThread:(DownloadType)downType
@@ -37,8 +47,8 @@
     switch (downType) {
         case DownLoad_Wait:
             _DownloadType = downType;
-            if (m_delegate && [m_delegate respondsToSelector:@selector(DownloadDelegate:StatueChange:)]) {
-                [m_delegate DownloadDelegate:self StatueChange:DownLoad_Wait];
+            if (_Delegate && [_Delegate respondsToSelector:@selector(DownloadDelegate:StatueChange:)]) {
+                [_Delegate DownloadDelegate:self StatueChange:DownLoad_Wait];
             }
             break;
         case Download_Run:
@@ -51,8 +61,8 @@
             }
             
             _DownloadType = downType;
-            if (m_delegate && [m_delegate respondsToSelector:@selector(DownloadDelegate:StatueChange:)]) {
-                [m_delegate DownloadDelegate:self StatueChange:Download_Run];
+            if (_Delegate && [_Delegate respondsToSelector:@selector(DownloadDelegate:StatueChange:)]) {
+                [_Delegate DownloadDelegate:self StatueChange:Download_Run];
             }
             
             NetRequestTask * newTask = [NetRequestTask TaskWithProxy:self];
@@ -68,8 +78,8 @@
             }
             
             _DownloadType = downType;
-            if (m_delegate && [m_delegate respondsToSelector:@selector(DownloadDelegate:StatueChange:)]) {
-                [m_delegate DownloadDelegate:self StatueChange:Download_Stop];
+            if (_Delegate && [_Delegate respondsToSelector:@selector(DownloadDelegate:StatueChange:)]) {
+                [_Delegate DownloadDelegate:self StatueChange:Download_Stop];
             }
             
             [[NetRequestFactory shared] cancelRequest:_Url];
@@ -81,14 +91,14 @@
             _IsFinish = YES;
             
             _DownloadType = downType;
-            if (m_delegate && [m_delegate respondsToSelector:@selector(DownloadDelegate:StatueChange:)]) {
-                [m_delegate DownloadDelegate:self StatueChange:downType];
+            if (_Delegate && [_Delegate respondsToSelector:@selector(DownloadDelegate:StatueChange:)]) {
+                [_Delegate DownloadDelegate:self StatueChange:downType];
             }
             break;
         case Download_Fail:
             _DownloadType = downType;
-            if (m_delegate && [m_delegate respondsToSelector:@selector(DownloadDelegate:StatueChange:)]) {
-                [m_delegate DownloadDelegate:self StatueChange:downType];
+            if (_Delegate && [_Delegate respondsToSelector:@selector(DownloadDelegate:StatueChange:)]) {
+                [_Delegate DownloadDelegate:self StatueChange:downType];
             }
             break;
     }
@@ -98,12 +108,12 @@
     [manage dealChange:self];
 }
 
-#pragma mark - 
+#pragma mark -
 -(void)setProgress:(float)progress
 {
     _CurSize = _TotalSize*progress;
-    if (m_delegate && [m_delegate respondsToSelector:@selector(DownloadDelegate:SetProgressAnim:)] && _DownloadType==Download_Run) {
-        [m_delegate DownloadDelegate:self SetProgressAnim:YES];
+    if (_Delegate && [_Delegate respondsToSelector:@selector(DownloadDelegate:SetProgressAnim:)] && _DownloadType==Download_Run) {
+        [_Delegate DownloadDelegate:self SetProgressAnim:YES];
     }
 }
 

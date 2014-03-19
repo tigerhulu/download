@@ -7,7 +7,7 @@
 //
 
 #import "DB_Base.h"
-#import "BE_Download.h"
+#import "ET_Download.h"
 
 @interface DB_Download : DB_Base
 
@@ -17,8 +17,8 @@
 
 +(void)deleteDownloadWithUrl:(NSString *)url;
 
-+(void)addDownload:(BE_Download *)download;
++(void)addDownload:(ET_Download *)download;
 
-+(void)updateDownload:(BE_Download *)download;
++(void)updateDownload:(ET_Download *)download;
 
 @end

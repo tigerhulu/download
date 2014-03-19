@@ -14,6 +14,7 @@
 		A027152018D69DF500914F21 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = A027151B18D69DF500914F21 /* FMResultSet.m */; };
 		A027152C18D6DC6D00914F21 /* DB_Base.m in Sources */ = {isa = PBXBuildFile; fileRef = A027152918D6DC6D00914F21 /* DB_Base.m */; };
 		A027152D18D6DC6D00914F21 /* DB_Download.m in Sources */ = {isa = PBXBuildFile; fileRef = A027152B18D6DC6D00914F21 /* DB_Download.m */; };
+		A0400F2A18D93743006D115D /* ET_Download.m in Sources */ = {isa = PBXBuildFile; fileRef = A0400F2918D93743006D115D /* ET_Download.m */; };
 		A043594118CEBE0900EA1A47 /* DownloadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A043594018CEBE0900EA1A47 /* DownloadCell.m */; };
 		A043594618CED90000EA1A47 /* fail.png in Resources */ = {isa = PBXBuildFile; fileRef = A043594318CED90000EA1A47 /* fail.png */; };
 		A043594718CED90000EA1A47 /* run.png in Resources */ = {isa = PBXBuildFile; fileRef = A043594418CED90000EA1A47 /* run.png */; };
@@ -77,7 +78,6 @@
 		A04E764618CD8C0E002B8759 /* RootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A04E764418CD8C0E002B8759 /* RootVC.m */; };
 		A04E764718CD8C0E002B8759 /* RootVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A04E764518CD8C0E002B8759 /* RootVC.xib */; };
 		A04E764A18CD8EC4002B8759 /* DownManage.m in Sources */ = {isa = PBXBuildFile; fileRef = A04E764918CD8EC4002B8759 /* DownManage.m */; };
-		A04E764D18CD8ED8002B8759 /* BE_Download.m in Sources */ = {isa = PBXBuildFile; fileRef = A04E764C18CD8ED8002B8759 /* BE_Download.m */; };
 		A0EB61DB18D0462100323E73 /* ImageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A0EB61D918D0462100323E73 /* ImageVC.m */; };
 		A0EB61DC18D0462100323E73 /* ImageVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0EB61DA18D0462100323E73 /* ImageVC.xib */; };
 		A0EB61E118D04AB400323E73 /* urlfile.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0EB61E018D04AB400323E73 /* urlfile.plist */; };
@@ -98,6 +98,8 @@
 		A027152918D6DC6D00914F21 /* DB_Base.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DB_Base.m; sourceTree = "<group>"; };
 		A027152A18D6DC6D00914F21 /* DB_Download.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DB_Download.h; sourceTree = "<group>"; };
 		A027152B18D6DC6D00914F21 /* DB_Download.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DB_Download.m; sourceTree = "<group>"; };
+		A0400F2818D93743006D115D /* ET_Download.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ET_Download.h; sourceTree = "<group>"; };
+		A0400F2918D93743006D115D /* ET_Download.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ET_Download.m; sourceTree = "<group>"; };
 		A043593F18CEBE0900EA1A47 /* DownloadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadCell.h; sourceTree = "<group>"; };
 		A043594018CEBE0900EA1A47 /* DownloadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadCell.m; sourceTree = "<group>"; };
 		A043594318CED90000EA1A47 /* fail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fail.png; sourceTree = "<group>"; };
@@ -204,8 +206,6 @@
 		A04E764518CD8C0E002B8759 /* RootVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RootVC.xib; sourceTree = "<group>"; };
 		A04E764818CD8EC4002B8759 /* DownManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownManage.h; sourceTree = "<group>"; };
 		A04E764918CD8EC4002B8759 /* DownManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownManage.m; sourceTree = "<group>"; };
-		A04E764B18CD8ED8002B8759 /* BE_Download.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BE_Download.h; sourceTree = "<group>"; };
-		A04E764C18CD8ED8002B8759 /* BE_Download.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BE_Download.m; sourceTree = "<group>"; };
 		A0EB61D818D0462100323E73 /* ImageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageVC.h; sourceTree = "<group>"; };
 		A0EB61D918D0462100323E73 /* ImageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageVC.m; sourceTree = "<group>"; };
 		A0EB61DA18D0462100323E73 /* ImageVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageVC.xib; sourceTree = "<group>"; };
@@ -427,8 +427,8 @@
 		A04E75F018CD8A28002B8759 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
-				A04E764B18CD8ED8002B8759 /* BE_Download.h */,
-				A04E764C18CD8ED8002B8759 /* BE_Download.m */,
+				A0400F2818D93743006D115D /* ET_Download.h */,
+				A0400F2918D93743006D115D /* ET_Download.m */,
 			);
 			path = Entity;
 			sourceTree = SOURCE_ROOT;
@@ -628,6 +628,7 @@
 				A04E763218CD8A93002B8759 /* EGORefreshTableFootView.m in Sources */,
 				A04E763018CD8A93002B8759 /* MBProgressHUD.m in Sources */,
 				A04E762A18CD8A93002B8759 /* Util_Object.m in Sources */,
+				A0400F2A18D93743006D115D /* ET_Download.m in Sources */,
 				A04E762918CD8A93002B8759 /* Util_Math.m in Sources */,
 				A04E75DC18CD8958002B8759 /* NetRequestFactory.m in Sources */,
 				A04E755218CD51F2002B8759 /* AppDelegate.m in Sources */,
@@ -635,7 +636,6 @@
 				A04E762F18CD8A93002B8759 /* MessageCenter.m in Sources */,
 				A04E762C18CD8A93002B8759 /* Util_Tableview.m in Sources */,
 				A04E762618CD8A93002B8759 /* Util_Date.m in Sources */,
-				A04E764D18CD8ED8002B8759 /* BE_Download.m in Sources */,
 				A04E763318CD8A93002B8759 /* EGORefreshTableHeaderView.m in Sources */,
 				A04E75D818CD8958002B8759 /* Reachability.m in Sources */,
 				A04E75D018CD8958002B8759 /* ASIAuthenticationDialog.m in Sources */,

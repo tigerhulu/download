@@ -8,7 +8,7 @@
 
 #import "VCBase.h"
 #import "DownManage.h"
-#import "BE_Download.h"
+#import "ET_Download.h"
 
 @interface RootVC : VCBase<DownloadDataDelegate,DownloadDelegate,UIActionSheetDelegate>{
     IBOutlet UITableView * m_table;

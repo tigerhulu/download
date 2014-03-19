@@ -70,7 +70,7 @@
         }
     }else{
         if (buttonIndex==1) {
-            for (BE_Download * download in [m_arr_item objectEnumerator]) {
+            for (ET_Download * download in [m_arr_item objectEnumerator]) {
                 NSString * url = download.Url;
                 [[DownManage shared] removeDownloadWithUrl:url DeleteFile:YES];
             }
@@ -100,7 +100,7 @@
 }
 
 #pragma mark - delegate
--(void)DownloadDataAddDownload:(BE_Download *)download
+-(void)DownloadDataAddDownload:(ET_Download *)download
 {
     if (!download) {
         return;
@@ -109,7 +109,7 @@
     [m_table reloadData];
 }
 
--(void)DownloadDelegate:(BE_Download *)download SetProgressAnim:(BOOL)anim
+-(void)DownloadDelegate:(ET_Download *)download SetProgressAnim:(BOOL)anim
 {
     DownloadCell * cell = [self CellForUrl:download.Url];
     if (cell) {
@@ -117,7 +117,7 @@
     }
 }
 
--(void)DownloadDelegate:(BE_Download *)download StatueChange:(DownloadType)downloadType
+-(void)DownloadDelegate:(ET_Download *)download StatueChange:(DownloadType)downloadType
 {
     DownloadCell * cell = [self CellForUrl:download.Url];
     if (cell) {
@@ -129,7 +129,7 @@
 {
     int count = [m_arr_item count];
     for (int i=0; i<count; i++) {
-        BE_Download * down = [m_arr_item objectAtIndex:i];
+        ET_Download * down = [m_arr_item objectAtIndex:i];
         if ([url isEqualToString:down.Url]) {
             DownloadCell * cell = (DownloadCell *)[m_table cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
             if (cell) {
@@ -150,13 +150,13 @@
     DownloadCell * cell = (DownloadCell *)view;
     NSIndexPath * indexPath = [m_table indexPathForCell:cell];
     if (indexPath) {
-        BE_Download * download = [m_arr_item objectAtIndex:indexPath.row];
+        ET_Download * download = [m_arr_item objectAtIndex:indexPath.row];
         switch (download.DownloadType) {
-            case DownLoad_Wait:[download runThread:Download_Stop];break;
-            case Download_Run:[download runThread:Download_Stop];break;
-            case Download_Stop:[download runThread:Download_Run];break;
+            case DownLoad_Wait:[download stop];break;
+            case Download_Run:[download stop];break;
+            case Download_Stop:[download start];break;
             case Download_Complete:break;
-            case Download_Fail:[download runThread:Download_Run];break;
+            case Download_Fail:[download start];break;
         }
     }
 }
@@ -167,7 +167,7 @@
         return;
     }
     int index = actionSheet.tag;
-    BE_Download * download = nil;
+    ET_Download * download = nil;
     if (index<[m_arr_item count])
         download = [m_arr_item objectAtIndex:index];
     if (!download) {
@@ -216,7 +216,7 @@
         [cell.BtnRun addTarget:self action:@selector(onRunBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     
-    BE_Download * download = [m_arr_item objectAtIndex:indexPath.row];
+    ET_Download * download = [m_arr_item objectAtIndex:indexPath.row];
     download.Delegate = self;
     
     cell.Title.text = download.Url;
