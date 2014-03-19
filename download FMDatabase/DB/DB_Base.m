@@ -13,16 +13,12 @@
 
 +(DB_Base *)shared
 {
-    static DB_Base * _DB_Base = nil;
-    if (!_DB_Base) {
-		@synchronized(self) {
-			if (!_DB_Base) {
-                _DB_Base = [[DB_Base alloc] init];
-                [DB_Download createTableDownload];
-			}
-		}
-	}
-    return _DB_Base;
+    static DB_Base * _sharedInstance = nil;
+    static dispatch_once_t oncePredicate;
+    dispatch_once(&oncePredicate, ^{
+        _sharedInstance = [[self alloc] init];
+    });
+    return _sharedInstance;
 }
 
 - (id) init

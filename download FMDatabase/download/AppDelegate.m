@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "DB_Download.h"
 #import "DownManage.h"
 #import "RootVC.h"
 
@@ -14,6 +15,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [DB_Download createTableDownload];
     [[DownManage shared] updateData];
     
     m_backIdentifier = UIBackgroundTaskInvalid;
