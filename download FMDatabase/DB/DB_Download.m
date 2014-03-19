@@ -23,7 +23,9 @@
 +(void)addDownload:(BE_Download *)download
 {
     NSString * sql = [NSString stringWithFormat:@"INSERT INTO %@ (Url, FilePath, CurSize, TotalSize, DownloadType) VALUES ('%@', '%@', %lld, %lld, %d)",Table_Download,download.Url,download.FilePath,download.CurSize,download.TotalSize,download.DownloadType];
-    [[DB_Base shared] executeUpdate:sql];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [[DB_Base shared] executeUpdate:sql];
+    });
 }
 
 +(void)deleteDownloadWithUrl:(NSString *)url
@@ -32,7 +34,9 @@
     if (url.length>0) {
         sql = [sql stringByAppendingFormat:@" WHERE Url = '%@'",url];
     }
-    [[DB_Base shared] executeUpdate:sql];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [[DB_Base shared] executeUpdate:sql];
+    });
 }
 
 +(void)updateDownload:(BE_Download *)download
@@ -48,7 +52,9 @@
     sql = [sql stringByAppendingFormat:@" ,TotalSize = %lld",download.TotalSize];
     sql = [sql stringByAppendingFormat:@" ,DownloadType = %d",download.DownloadType];
     sql = [sql stringByAppendingFormat:@" WHERE Url = '%@'",download.Url];
-    [[DB_Base shared] executeUpdate:sql];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [[DB_Base shared] executeUpdate:sql];
+    });
 }
 
 +(NSArray *)queryDownloadWithUrl:(NSString *)url
@@ -70,6 +76,7 @@
         [download release];
 	}
 	[rs close];
+    [[DB_Base shared].DBQueue close];
     return array;
 }
 
