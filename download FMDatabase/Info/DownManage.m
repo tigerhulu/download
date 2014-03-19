@@ -132,7 +132,7 @@ static DownManage * _DownManage;
         return;
     }
     
-    ET_Download * download = [[ET_Download alloc] init];
+    ET_Download * download = [[[ET_Download alloc] init] autorelease];
     download.Url = url;
     download.FilePath = [Resource getResourcePathWithName:[url lastPathComponent]];
     download.DownloadType = DownLoad_Wait;
